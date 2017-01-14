@@ -1,0 +1,12 @@
+# This docker file installs ubuntu 14.04 with basic c++ build tools + cmake 3.4.3
+FROM ubuntu:14.04
+MAINTAINER Lachlan Deakin <ljdgit@gmail.com>
+RUN apt-get update
+
+# Install dev tools
+RUN apt-get install -y build-essential
+RUN apt-get install -y git wget
+
+# Install cmake 3.4.3
+RUN (cd /opt && wget https://cmake.org/files/v3.4/cmake-3.4.3-Linux-x86_64.sh && yes | bash cmake-3.4.3-Linux-x86_64.sh)
+ENV PATH "/opt/cmake-3.4.3-Linux-x86_64/bin:$PATH"
